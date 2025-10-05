@@ -1,356 +1,1359 @@
-<!DOCTYPE HTML>
-<!--
-	Story by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Story by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flyer-Receiver Matching Algorithm</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="divided">
+      body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
 
-				<!-- One -->
-					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
-						<div class="content">
-							<h1>Story</h1>
-							<p class="major">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p>
-							<ul class="actions stacked">
-								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/banner.jpg" alt="" />
-						</div>
-					</section>
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
 
-				<!-- Two -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
-						<div class="content">
-							<h2>Magna etiam feugiat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
-							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/spotlight01.jpg" alt="" />
-						</div>
-					</section>
+      header {
+        text-align: center;
+        padding: 30px 20px;
+        background: linear-gradient(135deg, #4285f4, #34a853);
+        color: white;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
 
-				<!-- Three -->
-					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
-						<div class="content">
-							<h2>Tempus adipiscing</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
-							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/spotlight02.jpg" alt="" />
-						</div>
-					</section>
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
 
-				<!-- Four -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
-						<div class="content">
-							<h2>Pharetra etiam nulla</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
-							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/spotlight03.jpg" alt="" />
-						</div>
-					</section>
+      h2 {
+        font-size: 1.8rem;
+        margin: 25px 0 15px;
+        color: #4285f4;
+        border-bottom: 2px solid #eaeaea;
+        padding-bottom: 8px;
+      }
 
-				<!-- Five -->
-					<section class="wrapper style1 align-center">
-						<div class="inner">
-							<h2>Massa sed condimentum</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
-						</div>
+      h3 {
+        font-size: 1.4rem;
+        margin: 20px 0 10px;
+        color: #5f6368;
+      }
 
-						<!-- Gallery -->
-							<div class="gallery style2 medium lightbox onscroll-fade-in">
-								<article>
-									<a href="images/gallery/fulls/01.jpg" class="image">
-										<img src="images/gallery/thumbs/01.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Ipsum Dolor</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/02.jpg" class="image">
-										<img src="images/gallery/thumbs/02.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Feugiat Lorem</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/03.jpg" class="image">
-										<img src="images/gallery/thumbs/03.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Magna Amet</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/04.jpg" class="image">
-										<img src="images/gallery/thumbs/04.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Sed Tempus</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/05.jpg" class="image">
-										<img src="images/gallery/thumbs/05.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Ultrices Magna</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/06.jpg" class="image">
-										<img src="images/gallery/thumbs/06.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Sed Tempus</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/07.jpg" class="image">
-										<img src="images/gallery/thumbs/07.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Ipsum Lorem</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/08.jpg" class="image">
-										<img src="images/gallery/thumbs/08.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Magna Risus</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/09.jpg" class="image">
-										<img src="images/gallery/thumbs/09.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Tempus Dolor</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/10.jpg" class="image">
-										<img src="images/gallery/thumbs/10.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Sed Etiam</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/11.jpg" class="image">
-										<img src="images/gallery/thumbs/11.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Magna Lorem</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="images/gallery/fulls/12.jpg" class="image">
-										<img src="images/gallery/thumbs/12.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Ipsum Dolor</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-							</div>
+      .card {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #4285f4;
+      }
 
-					</section>
+      .card.receivers {
+        border-left-color: #34a853;
+      }
 
-				<!-- Six -->
-					<section class="wrapper style1 align-center">
-						<div class="inner">
-							<h2>Ipsum sed consequat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
-							<div class="items style1 medium onscroll-fade-in">
-								<section>
-									<span class="icon style2 major fa-gem"></span>
-									<h3>Lorem</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-save"></span>
-									<h3>Ipsum</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-chart-bar"></span>
-									<h3>Dolor</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-wifi"></span>
-									<h3>Amet</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-cog"></span>
-									<h3>Magna</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon style2 major fa-paper-plane"></span>
-									<h3>Tempus</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-desktop"></span>
-									<h3>Aliquam</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-sync-alt"></span>
-									<h3>Elit</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-hashtag"></span>
-									<h3>Morbi</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-bolt"></span>
-									<h3>Turpis</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-envelope"></span>
-									<h3>Ultrices</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-								<section>
-									<span class="icon solid style2 major fa-leaf"></span>
-									<h3>Risus</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
-								</section>
-							</div>
-						</div>
-					</section>
+      .tabs {
+        display: flex;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 20px;
+      }
 
-				<!-- Seven -->
-					<section class="wrapper style1 align-center">
-						<div class="inner medium">
-							<h2>Get in touch</h2>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field half">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" value="" />
-									</div>
-									<div class="field half">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" value="" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="6"></textarea>
-									</div>
-								</div>
-								<ul class="actions special">
-									<li><input type="submit" name="submit" id="submit" value="Send Message" /></li>
-								</ul>
-							</form>
+      .tab {
+        padding: 12px 24px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #5f6368;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s;
+      }
 
-						</div>
-					</section>
+      .tab.active {
+        color: #4285f4;
+        border-bottom: 3px solid #4285f4;
+      }
 
-				<!-- Footer -->
-					<footer class="wrapper style1 align-center">
-						<div class="inner">
-							<ul class="icons">
-								<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
-							</ul>
-							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-						</div>
-					</footer>
+      .tab-content {
+        display: none;
+      }
 
-			</div>
+      .tab-content.active {
+        display: block;
+      }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
 
-	</body>
+      .data-table th,
+      .data-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .data-table th {
+        background-color: #f5f7fa;
+        font-weight: 600;
+        color: #5f6368;
+      }
+
+      .data-table tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      input,
+      select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+        font-size: 0.95rem;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: #4285f4;
+        box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #3367d6;
+      }
+
+      .btn-success {
+        background-color: #34a853;
+      }
+
+      .btn-success:hover {
+        background-color: #2d9248;
+      }
+
+      .btn-secondary {
+        background-color: #5f6368;
+      }
+
+      .btn-secondary:hover {
+        background-color: #4e5154;
+      }
+
+      .weights-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .weight-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .weight-item label {
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: #5f6368;
+      }
+
+      .weight-percent {
+        margin-top: 5px;
+        font-size: 0.9rem;
+        color: #5f6368;
+      }
+
+      .weight-total {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #f5f7fa;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+
+      .match-score {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        font-size: 0.9rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin: 2px;
+      }
+
+      .badge-high {
+        background-color: #ffebee;
+        color: #c62828;
+      }
+
+      .badge-critical {
+        background-color: #ffcdd2;
+        color: #b71c1c;
+      }
+
+      .badge-normal {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      .badge-low {
+        background-color: #f3e5f5;
+        color: #7b1fa2;
+      }
+
+      .results-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .results-metrics {
+        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .results-metrics h3 {
+        color: #2e7d32;
+        margin-top: 0;
+      }
+
+      .metric {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(46, 125, 50, 0.2);
+      }
+
+      .metric:last-child {
+        border-bottom: none;
+      }
+
+      .metric-value {
+        font-weight: 600;
+        color: #2e7d32;
+      }
+
+      .score-breakdown {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        margin-top: 10px;
+      }
+
+      .score-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .score-bar {
+        height: 8px;
+        background-color: #e0e0e0;
+        border-radius: 4px;
+        margin-top: 3px;
+        overflow: hidden;
+      }
+
+      .score-fill {
+        height: 100%;
+        background-color: #4285f4;
+        border-radius: 4px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .algorithm-explanation {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-left: 4px solid #4285f4;
+      }
+
+      .algorithm-explanation ol {
+        padding-left: 20px;
+      }
+
+      .algorithm-explanation li {
+        margin-bottom: 10px;
+      }
+
+      .code-container {
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.4;
+        overflow-x: auto;
+      }
+
+      .code-keyword {
+        color: #d73a49;
+        font-weight: bold;
+      }
+
+      .code-string {
+        color: #032f62;
+      }
+
+      .code-comment {
+        color: #6a737d;
+        font-style: italic;
+      }
+
+      .code-function {
+        color: #6f42c1;
+      }
+
+      .code-class {
+        color: #22863a;
+      }
+
+      @media (max-width: 768px) {
+        .results-container {
+          grid-template-columns: 1fr;
+        }
+
+        .weights-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Flyer-Receiver Matching Algorithm</h1>
+        <p>
+          Interactive Demo - Modify inputs and see matching results in real-time
+        </p>
+      </header>
+
+      <div class="card">
+        <h2>Algorithm Explanation</h2>
+        <p>
+          This algorithm matches flyers (travelers who can carry packages) with
+          receivers (people who need items delivered) based on multiple weighted
+          factors:
+        </p>
+
+        <div class="algorithm-explanation">
+          <h3>Algorithm Steps:</h3>
+          <ol>
+            <li>
+              <strong>Calculate all possible flyer-receiver pairs</strong> -
+              Consider every possible combination
+            </li>
+            <li>
+              <strong>Compute match scores for each pair</strong> - Based on 6
+              weighted factors
+            </li>
+            <li>
+              <strong>Sort potential matches by score</strong> - Highest scores
+              first
+            </li>
+            <li>
+              <strong>Apply greedy algorithm to assign matches</strong> - Assign
+              best available matches while respecting capacity constraints
+            </li>
+            <li>
+              <strong>Track capacity utilization and match quality</strong> -
+              Calculate performance metrics
+            </li>
+          </ol>
+        </div>
+
+        <h3>Scoring Components:</h3>
+        <ul>
+          <li>
+            <strong>Route Matching (40%)</strong> - How well the origin and
+            destination align
+          </li>
+          <li>
+            <strong>Date Flexibility (20%)</strong> - How close the travel dates
+            are
+          </li>
+          <li>
+            <strong>Weight Utilization (15%)</strong> - How efficiently capacity
+            is used
+          </li>
+          <li>
+            <strong>Price Alignment (10%)</strong> - How well the price fits the
+            budget
+          </li>
+          <li>
+            <strong>Reputation Score (10%)</strong> - Flyer's rating and
+            reliability
+          </li>
+          <li>
+            <strong>Urgency Level (5%)</strong> - How urgent the delivery is
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Configuration</h2>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="weights">Weights</button>
+          <button class="tab" data-tab="flyers">Flyers</button>
+          <button class="tab" data-tab="receivers">Receivers</button>
+        </div>
+
+        <div id="weights" class="tab-content active">
+          <p>
+            Adjust the importance of each matching factor. Weights will
+            automatically normalize to sum to 100%.
+          </p>
+
+          <div class="weights-container">
+            <div class="weight-item">
+              <label for="route-weight">Route Matching</label>
+              <input
+                type="number"
+                id="route-weight"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.4"
+              />
+              <span class="weight-percent">40%</span>
+            </div>
+
+            <div class="weight-item">
+              <label for="date-weight">Date Flexibility</label>
+              <input
+                type="number"
+                id="date-weight"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.2"
+              />
+              <span class="weight-percent">20%</span>
+            </div>
+
+            <div class="weight-item">
+              <label for="weight-weight">Weight Utilization</label>
+              <input
+                type="number"
+                id="weight-weight"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.15"
+              />
+              <span class="weight-percent">15%</span>
+            </div>
+
+            <div class="weight-item">
+              <label for="price-weight">Price Alignment</label>
+              <input
+                type="number"
+                id="price-weight"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.1"
+              />
+              <span class="weight-percent">10%</span>
+            </div>
+
+            <div class="weight-item">
+              <label for="reputation-weight">Reputation Score</label>
+              <input
+                type="number"
+                id="reputation-weight"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.1"
+              />
+              <span class="weight-percent">10%</span>
+            </div>
+
+            <div class="weight-item">
+              <label for="urgency-weight">Urgency Level</label>
+              <input
+                type="number"
+                id="urgency-weight"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.05"
+              />
+              <span class="weight-percent">5%</span>
+            </div>
+          </div>
+
+          <div class="weight-total">
+            <strong>Total: <span id="weight-total">100%</span></strong>
+          </div>
+        </div>
+
+        <div id="flyers" class="tab-content">
+          <p>
+            Flyers are travelers who can carry packages. Edit their details
+            below.
+          </p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Date</th>
+                <th>Capacity (kg)</th>
+                <th>Price ($)</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody id="flyers-data">
+              <tr>
+                <td>1</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Lima" /></td>
+                <td><input type="date" value="2025-10-10" /></td>
+                <td><input type="number" value="10" min="1" /></td>
+                <td><input type="number" value="50" min="1" /></td>
+                <td>
+                  <input type="number" value="4.8" min="1" max="5" step="0.1" />
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Buenos Aires" /></td>
+                <td><input type="date" value="2025-10-09" /></td>
+                <td><input type="number" value="5" min="1" /></td>
+                <td><input type="number" value="40" min="1" /></td>
+                <td>
+                  <input type="number" value="4.2" min="1" max="5" step="0.1" />
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Lima" /></td>
+                <td><input type="date" value="2025-10-11" /></td>
+                <td><input type="number" value="8" min="1" /></td>
+                <td><input type="number" value="55" min="1" /></td>
+                <td>
+                  <input type="number" value="4.6" min="1" max="5" step="0.1" />
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Lima" /></td>
+                <td><input type="date" value="2025-10-10" /></td>
+                <td><input type="number" value="12" min="1" /></td>
+                <td><input type="number" value="45" min="1" /></td>
+                <td>
+                  <input type="number" value="4.9" min="1" max="5" step="0.1" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="actions">
+            <button class="btn btn-secondary" id="add-flyer">Add Flyer</button>
+            <button class="btn btn-secondary" id="remove-flyer">
+              Remove Flyer
+            </button>
+          </div>
+        </div>
+
+        <div id="receivers" class="tab-content">
+          <p>Receivers need packages delivered. Edit their details below.</p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Date</th>
+                <th>Weight (kg)</th>
+                <th>Budget ($)</th>
+                <th>Urgency</th>
+              </tr>
+            </thead>
+            <tbody id="receivers-data">
+              <tr>
+                <td>A</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Lima" /></td>
+                <td><input type="date" value="2025-10-10" /></td>
+                <td><input type="number" value="8" min="1" /></td>
+                <td><input type="number" value="60" min="1" /></td>
+                <td>
+                  <select>
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high" selected>High</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Buenos Aires" /></td>
+                <td><input type="date" value="2025-10-08" /></td>
+                <td><input type="number" value="3" min="1" /></td>
+                <td><input type="number" value="45" min="1" /></td>
+                <td>
+                  <select>
+                    <option value="low">Low</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>C</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Lima" /></td>
+                <td><input type="date" value="2025-10-12" /></td>
+                <td><input type="number" value="5" min="1" /></td>
+                <td><input type="number" value="40" min="1" /></td>
+                <td>
+                  <select>
+                    <option value="low" selected>Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>D</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Lima" /></td>
+                <td><input type="date" value="2025-10-10" /></td>
+                <td><input type="number" value="7" min="1" /></td>
+                <td><input type="number" value="55" min="1" /></td>
+                <td>
+                  <select>
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="critical" selected>Critical</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>E</td>
+                <td><input type="text" value="Santiago" /></td>
+                <td><input type="text" value="Lima" /></td>
+                <td><input type="date" value="2025-10-11" /></td>
+                <td><input type="number" value="4" min="1" /></td>
+                <td><input type="number" value="50" min="1" /></td>
+                <td>
+                  <select>
+                    <option value="low">Low</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="actions">
+            <button class="btn btn-secondary" id="add-receiver">
+              Add Receiver
+            </button>
+            <button class="btn btn-secondary" id="remove-receiver">
+              Remove Receiver
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Algorithm Implementation</h2>
+        <p>The core matching algorithm implemented in JavaScript:</p>
+
+        <div class="code-container">
+          <pre><span class="code-class">class</span> <span class="code-function">FlyerReceiverMatcher</span> {
+    <span class="code-keyword">constructor</span>(weights) {
+        <span class="code-keyword">this</span>.weights = weights || {
+            route: 0.4, date: 0.2, weight: 0.15,
+            price: 0.1, reputation: 0.1, urgency: 0.05
+        };
+        <span class="code-keyword">this</span>._normalizeWeights();
+    }
+
+    <span class="code-function">calculateMatchScore</span>(flyer, receiver, remainingCapacity) {
+        <span class="code-comment">// Calculate scores for all 6 factors</span>
+        <span class="code-keyword">const</span> scores = {
+            route: <span class="code-keyword">this</span>.routeScore(flyer, receiver),
+            date: <span class="code-keyword">this</span>.dateScore(flyer, receiver),
+            weight: <span class="code-keyword">this</span>.weightScore(flyer, receiver, remainingCapacity),
+            price: <span class="code-keyword">this</span>.priceScore(flyer, receiver),
+            reputation: <span class="code-keyword">this</span>.reputationScore(flyer),
+            urgency: <span class="code-keyword">this</span>.urgencyScore(receiver)
+        };
+
+        <span class="code-comment">// Calculate weighted total</span>
+        <span class="code-keyword">let</span> total = 0;
+        <span class="code-keyword">for</span> (<span class="code-keyword">let</span> key <span class="code-keyword">in</span> scores) {
+            total += <span class="code-keyword">this</span>.weights[key] * scores[key];
+        }
+
+        <span class="code-keyword">return</span> { total, scores };
+    }
+
+    <span class="code-function">greedyMatching</span>(flyers, receivers, minScoreThreshold = 0.4) {
+        <span class="code-comment">// Calculate all possible match scores</span>
+        <span class="code-keyword">const</span> allMatches = [];
+        <span class="code-keyword">const</span> flyerCapacities = {};
+
+        flyers.forEach(flyer => {
+            flyerCapacities[flyer.id] = flyer.capacity;
+            receivers.forEach(receiver => {
+                <span class="code-keyword">const</span> score = <span class="code-keyword">this</span>.calculateMatchScore(flyer, receiver);
+                <span class="code-keyword">if</span> (score.total >= minScoreThreshold) {
+                    allMatches.push({ flyer, receiver, ...score });
+                }
+            });
+        });
+
+        <span class="comment">// Sort by score (descending) and apply greedy assignment</span>
+        allMatches.sort((a, b) => b.total - a.total);
+
+        <span class="code-keyword">const</span> matches = [];
+        <span class="code-keyword">const</span> assignedReceivers = <span class="code-keyword">new</span> Set();
+
+        allMatches.forEach(match => {
+            <span class="code-keyword">const</span> { flyer, receiver, total, scores } = match;
+
+            <span class="code-keyword">if</span> (!assignedReceivers.has(receiver.id) &&
+                flyerCapacities[flyer.id] >= receiver.weight) {
+
+                assignedReceivers.add(receiver.id);
+                flyerCapacities[flyer.id] -= receiver.weight;
+
+                matches.push({
+                    flyer_id: flyer.id,
+                    receiver_id: receiver.id,
+                    total_score: total,
+                    score_components: scores,
+                    weight_transferred: receiver.weight,
+                    price: flyer.price
+                });
+            }
+        });
+
+        <span class="code-keyword">return</span> { matches, metrics: <span class="code-keyword">this</span>.calculateMetrics(flyers, receivers, matches) };
+    }
+}</pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Matching Results</h2>
+        <p>Based on current configuration and data</p>
+
+        <div class="actions">
+          <button class="btn btn-success" id="run-matching">
+            Run Matching Algorithm
+          </button>
+        </div>
+
+        <div class="results-container">
+          <div>
+            <h3>Matches</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Flyer</th>
+                  <th>Receiver</th>
+                  <th>Route</th>
+                  <th>Weight</th>
+                  <th>Price</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody id="matches-results">
+                <!-- Results will be populated here -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="results-metrics">
+            <h3>Performance Metrics</h3>
+            <div class="metric">
+              <span>Total Matches:</span>
+              <span class="metric-value" id="total-matches">4</span>
+            </div>
+            <div class="metric">
+              <span>Average Match Score:</span>
+              <span class="metric-value" id="avg-score">0.844</span>
+            </div>
+            <div class="metric">
+              <span>Capacity Utilization:</span>
+              <span class="metric-value" id="capacity-util">68.6%</span>
+            </div>
+            <div class="metric">
+              <span>Demand Satisfaction:</span>
+              <span class="metric-value" id="demand-sat">81.5%</span>
+            </div>
+            <div class="metric">
+              <span>Unmatched Receivers:</span>
+              <span class="metric-value" id="unmatched">1</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="score-details">
+          <!-- Score breakdown will be shown here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Tab functionality
+      document.querySelectorAll(".tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active class from all tabs and tab contents
+          document
+            .querySelectorAll(".tab")
+            .forEach((t) => t.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-content")
+            .forEach((tc) => tc.classList.remove("active"));
+
+          // Add active class to clicked tab and corresponding content
+          tab.classList.add("active");
+          document.getElementById(tab.dataset.tab).classList.add("active");
+        });
+      });
+
+      // Weight normalization
+      const weightInputs = document.querySelectorAll(
+        'input[type="number"][id$="-weight"]'
+      );
+
+      function normalizeWeights() {
+        let total = 0;
+        weightInputs.forEach((input) => {
+          total += parseFloat(input.value) || 0;
+        });
+
+        if (total > 0) {
+          weightInputs.forEach((input) => {
+            const value = parseFloat(input.value) || 0;
+            const percent = ((value / total) * 100).toFixed(1);
+            input.nextElementSibling.textContent = `${percent}%`;
+          });
+
+          document.getElementById("weight-total").textContent = "100%";
+        } else {
+          weightInputs.forEach((input) => {
+            input.nextElementSibling.textContent = "0%";
+          });
+          document.getElementById("weight-total").textContent = "0%";
+        }
+      }
+
+      weightInputs.forEach((input) => {
+        input.addEventListener("input", normalizeWeights);
+      });
+
+      // Initialize weight percentages
+      normalizeWeights();
+
+      // Add/Remove flyers and receivers
+      let flyerId = 5;
+      let receiverId = "F";
+
+      document.getElementById("add-flyer").addEventListener("click", () => {
+        const tbody = document.getElementById("flyers-data");
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+                <td>${flyerId++}</td>
+                <td><input type="text" value="Santiago"></td>
+                <td><input type="text" value="Lima"></td>
+                <td><input type="date" value="2025-10-15"></td>
+                <td><input type="number" value="10" min="1"></td>
+                <td><input type="number" value="50" min="1"></td>
+                <td><input type="number" value="4.5" min="1" max="5" step="0.1"></td>
+            `;
+        tbody.appendChild(newRow);
+      });
+
+      document.getElementById("remove-flyer").addEventListener("click", () => {
+        const tbody = document.getElementById("flyers-data");
+        if (tbody.children.length > 1) {
+          tbody.removeChild(tbody.lastChild);
+        }
+      });
+
+      document.getElementById("add-receiver").addEventListener("click", () => {
+        const tbody = document.getElementById("receivers-data");
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+                <td>${receiverId}</td>
+                <td><input type="text" value="Santiago"></td>
+                <td><input type="text" value="Lima"></td>
+                <td><input type="date" value="2025-10-15"></td>
+                <td><input type="number" value="5" min="1"></td>
+                <td><input type="number" value="50" min="1"></td>
+                <td>
+                    <select>
+                        <option value="low">Low</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </td>
+            `;
+        tbody.appendChild(newRow);
+        // Increment receiver ID (A, B, C, ...)
+        receiverId = String.fromCharCode(receiverId.charCodeAt(0) + 1);
+      });
+
+      document
+        .getElementById("remove-receiver")
+        .addEventListener("click", () => {
+          const tbody = document.getElementById("receivers-data");
+          if (tbody.children.length > 1) {
+            tbody.removeChild(tbody.lastChild);
+            // Decrement receiver ID
+            receiverId = String.fromCharCode(receiverId.charCodeAt(0) - 1);
+          }
+        });
+
+      // Matching algorithm implementation
+      document
+        .getElementById("run-matching")
+        .addEventListener("click", runMatching);
+
+      function runMatching() {
+        // Get weights
+        const weights = {
+          route: parseFloat(document.getElementById("route-weight").value) || 0,
+          date: parseFloat(document.getElementById("date-weight").value) || 0,
+          weight:
+            parseFloat(document.getElementById("weight-weight").value) || 0,
+          price: parseFloat(document.getElementById("price-weight").value) || 0,
+          reputation:
+            parseFloat(document.getElementById("reputation-weight").value) || 0,
+          urgency:
+            parseFloat(document.getElementById("urgency-weight").value) || 0,
+        };
+
+        // Normalize weights
+        const totalWeight = Object.values(weights).reduce(
+          (sum, w) => sum + w,
+          0
+        );
+        if (totalWeight > 0) {
+          for (let key in weights) {
+            weights[key] = weights[key] / totalWeight;
+          }
+        }
+
+        // Get flyers data
+        const flyers = [];
+        const flyerRows = document.querySelectorAll("#flyers-data tr");
+        flyerRows.forEach((row) => {
+          const cells = row.querySelectorAll("td");
+          flyers.push({
+            id: cells[0].textContent,
+            origin: cells[1].querySelector("input").value,
+            destination: cells[2].querySelector("input").value,
+            date: cells[3].querySelector("input").value,
+            capacity: parseFloat(cells[4].querySelector("input").value) || 0,
+            price: parseFloat(cells[5].querySelector("input").value) || 0,
+            rating: parseFloat(cells[6].querySelector("input").value) || 0,
+          });
+        });
+
+        // Get receivers data
+        const receivers = [];
+        const receiverRows = document.querySelectorAll("#receivers-data tr");
+        receiverRows.forEach((row) => {
+          const cells = row.querySelectorAll("td");
+          receivers.push({
+            id: cells[0].textContent,
+            origin: cells[1].querySelector("input").value,
+            destination: cells[2].querySelector("input").value,
+            date: cells[3].querySelector("input").value,
+            weight: parseFloat(cells[4].querySelector("input").value) || 0,
+            budget: parseFloat(cells[5].querySelector("input").value) || 0,
+            urgency: cells[6].querySelector("select").value,
+          });
+        });
+
+        // Run matching algorithm
+        const results = greedyMatching(flyers, receivers, weights);
+
+        // Display results
+        displayResults(results);
+      }
+
+      // Simplified matching algorithm (for demo purposes)
+      function greedyMatching(flyers, receivers, weights) {
+        const matches = [];
+        const flyerCapacities = {};
+        flyers.forEach((f) => (flyerCapacities[f.id] = f.capacity));
+
+        // Calculate scores for all possible matches
+        const allMatches = [];
+        flyers.forEach((flyer) => {
+          receivers.forEach((receiver) => {
+            const score = calculateMatchScore(
+              flyer,
+              receiver,
+              weights,
+              flyerCapacities[flyer.id]
+            );
+            if (score.total >= 0.4) {
+              allMatches.push({
+                flyer: flyer,
+                receiver: receiver,
+                score: score.total,
+                components: score.components,
+              });
+            }
+          });
+        });
+
+        // Sort by score (descending)
+        allMatches.sort((a, b) => b.score - a.score);
+
+        // Greedy assignment
+        const assignedReceivers = new Set();
+
+        allMatches.forEach((match) => {
+          const flyerId = match.flyer.id;
+          const receiverId = match.receiver.id;
+          const receiverWeight = match.receiver.weight;
+
+          if (
+            !assignedReceivers.has(receiverId) &&
+            flyerCapacities[flyerId] >= receiverWeight
+          ) {
+            assignedReceivers.add(receiverId);
+            flyerCapacities[flyerId] -= receiverWeight;
+
+            matches.push({
+              flyer_id: flyerId,
+              receiver_id: receiverId,
+              total_score: match.score,
+              score_components: match.components,
+              weight_transferred: receiverWeight,
+              price: match.flyer.price,
+            });
+          }
+        });
+
+        // Calculate metrics
+        const totalCapacity = flyers.reduce((sum, f) => sum + f.capacity, 0);
+        const totalDemand = receivers.reduce((sum, r) => sum + r.weight, 0);
+        const totalWeightMatched = matches.reduce(
+          (sum, m) => sum + m.weight_transferred,
+          0
+        );
+        const totalScore = matches.reduce((sum, m) => sum + m.total_score, 0);
+
+        const metrics = {
+          total_matches: matches.length,
+          total_score: totalScore,
+          average_score: matches.length > 0 ? totalScore / matches.length : 0,
+          capacity_utilization:
+            totalCapacity > 0 ? (totalWeightMatched / totalCapacity) * 100 : 0,
+          demand_satisfaction:
+            totalDemand > 0 ? (totalWeightMatched / totalDemand) * 100 : 0,
+          unmatched_receivers: receivers.length - assignedReceivers.size,
+        };
+
+        return {
+          matches: matches,
+          metrics: metrics,
+        };
+      }
+
+      function calculateMatchScore(
+        flyer,
+        receiver,
+        weights,
+        remainingCapacity
+      ) {
+        // Route score
+        const originMatch =
+          flyer.origin.toLowerCase() === receiver.origin.toLowerCase();
+        const destMatch =
+          flyer.destination.toLowerCase() ===
+          receiver.destination.toLowerCase();
+        let routeScore = 0;
+        if (originMatch && destMatch) {
+          routeScore = 1.0;
+        } else if (originMatch || destMatch) {
+          routeScore = 0.3;
+        }
+
+        // Date score (simplified)
+        const flyerDate = new Date(flyer.date);
+        const receiverDate = new Date(receiver.date);
+        const daysDiff = Math.abs(
+          (flyerDate - receiverDate) / (1000 * 60 * 60 * 24)
+        );
+        let dateScore = 0;
+        if (daysDiff <= 7) {
+          dateScore = Math.exp(-0.3 * daysDiff);
+        }
+
+        // Weight score
+        const capacity =
+          remainingCapacity !== undefined ? remainingCapacity : flyer.capacity;
+        let weightScore = 0;
+        if (capacity > 0) {
+          const utilization = receiver.weight / capacity;
+          if (utilization > 1) {
+            weightScore = 0;
+          } else if (utilization < 0.3) {
+            weightScore = 0.3 + (utilization * 0.7) / 0.3;
+          } else {
+            weightScore = 0.7 + utilization * 0.3;
+          }
+        }
+
+        // Price score
+        const priceDiff = flyer.price - receiver.budget;
+        let priceScore = 0;
+        if (priceDiff > 0) {
+          priceScore = 1 / (1 + Math.exp(0.05 * priceDiff * 2));
+        } else {
+          priceScore = Math.min(1.0, 1 + 0.1 * (-priceDiff / receiver.budget));
+        }
+
+        // Reputation score
+        const reputationScore = (flyer.rating / 5) ** 1.5;
+
+        // Urgency score
+        const urgencyMap = {
+          low: 0.3,
+          normal: 0.6,
+          high: 0.9,
+          critical: 1.0,
+        };
+        const urgencyScore = urgencyMap[receiver.urgency] || 0.6;
+
+        const components = {
+          route: routeScore,
+          date: dateScore,
+          weight: weightScore,
+          price: priceScore,
+          reputation: reputationScore,
+          urgency: urgencyScore,
+        };
+
+        // Calculate weighted total
+        let total = 0;
+        for (let key in components) {
+          total += weights[key] * components[key];
+        }
+
+        return {
+          total: total,
+          components: components,
+        };
+      }
+
+      function displayResults(results) {
+        // Display matches
+        const matchesTable = document.getElementById("matches-results");
+        matchesTable.innerHTML = "";
+
+        results.matches.forEach((match) => {
+          const flyer = getFlyerById(match.flyer_id);
+          const receiver = getReceiverById(match.receiver_id);
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>Flyer ${match.flyer_id}</td>
+                    <td>Receiver ${match.receiver_id}</td>
+                    <td>${flyer.origin} → ${flyer.destination}</td>
+                    <td>${match.weight_transferred}kg / ${flyer.capacity}kg</td>
+                    <td>$${match.price} ($${receiver.budget} budget)</td>
+                    <td><span class="match-score">${match.total_score.toFixed(
+                      3
+                    )}</span></td>
+                `;
+          matchesTable.appendChild(row);
+        });
+
+        // Display metrics
+        document.getElementById("total-matches").textContent =
+          results.metrics.total_matches;
+        document.getElementById("avg-score").textContent =
+          results.metrics.average_score.toFixed(3);
+        document.getElementById(
+          "capacity-util"
+        ).textContent = `${results.metrics.capacity_utilization.toFixed(1)}%`;
+        document.getElementById(
+          "demand-sat"
+        ).textContent = `${results.metrics.demand_satisfaction.toFixed(1)}%`;
+        document.getElementById("unmatched").textContent =
+          results.metrics.unmatched_receivers;
+
+        // Display score breakdown for the best match (if any)
+        const scoreDetails = document.getElementById("score-details");
+        scoreDetails.innerHTML = "";
+
+        if (results.matches.length > 0) {
+          const bestMatch = results.matches[0];
+          const flyer = getFlyerById(bestMatch.flyer_id);
+          const receiver = getReceiverById(bestMatch.receiver_id);
+
+          const detailsCard = document.createElement("div");
+          detailsCard.className = "card";
+          detailsCard.innerHTML = `
+                    <h3>Score Breakdown for Best Match: Flyer ${
+                      bestMatch.flyer_id
+                    } → Receiver ${bestMatch.receiver_id}</h3>
+                    <div class="score-breakdown">
+                        ${Object.entries(bestMatch.score_components)
+                          .map(([key, value]) => {
+                            const weight = getWeightValue(key);
+                            const percent = (value * 100).toFixed(1);
+                            const weighted = (value * weight * 100).toFixed(1);
+                            return `
+                                <div class="score-item">
+                                    <span>${formatComponentName(key)}:</span>
+                                    <span>${value.toFixed(
+                                      3
+                                    )} (${percent}%)</span>
+                                </div>
+                                <div class="score-bar">
+                                    <div class="score-fill" style="width: ${percent}%"></div>
+                                </div>
+                                <div class="score-item">
+                                    <small>Weight: ${weight.toFixed(
+                                      2
+                                    )} → Contribution: ${weighted}%</small>
+                                </div>
+                            `;
+                          })
+                          .join("")}
+                    </div>
+                `;
+          scoreDetails.appendChild(detailsCard);
+        }
+      }
+
+      // Helper functions
+      function getFlyerById(id) {
+        const flyerRows = document.querySelectorAll("#flyers-data tr");
+        for (let row of flyerRows) {
+          const cells = row.querySelectorAll("td");
+          if (cells[0].textContent === id) {
+            return {
+              id: cells[0].textContent,
+              origin: cells[1].querySelector("input").value,
+              destination: cells[2].querySelector("input").value,
+              date: cells[3].querySelector("input").value,
+              capacity: parseFloat(cells[4].querySelector("input").value) || 0,
+              price: parseFloat(cells[5].querySelector("input").value) || 0,
+              rating: parseFloat(cells[6].querySelector("input").value) || 0,
+            };
+          }
+        }
+        return null;
+      }
+
+      function getReceiverById(id) {
+        const receiverRows = document.querySelectorAll("#receivers-data tr");
+        for (let row of receiverRows) {
+          const cells = row.querySelectorAll("td");
+          if (cells[0].textContent === id) {
+            return {
+              id: cells[0].textContent,
+              origin: cells[1].querySelector("input").value,
+              destination: cells[2].querySelector("input").value,
+              date: cells[3].querySelector("input").value,
+              weight: parseFloat(cells[4].querySelector("input").value) || 0,
+              budget: parseFloat(cells[5].querySelector("input").value) || 0,
+              urgency: cells[6].querySelector("select").value,
+            };
+          }
+        }
+        return null;
+      }
+
+      function getWeightValue(component) {
+        const weightInput = document.getElementById(`${component}-weight`);
+        return parseFloat(weightInput.value) || 0;
+      }
+
+      function formatComponentName(component) {
+        const names = {
+          route: "Route Matching",
+          date: "Date Flexibility",
+          weight: "Weight Utilization",
+          price: "Price Alignment",
+          reputation: "Reputation Score",
+          urgency: "Urgency Level",
+        };
+        return names[component] || component;
+      }
+
+      // Run matching on page load
+      document.addEventListener("DOMContentLoaded", runMatching);
+    </script>
+  </body>
 </html>
